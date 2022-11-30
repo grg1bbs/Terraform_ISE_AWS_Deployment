@@ -29,7 +29,6 @@ This code was validated using:
    https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html
    
 ## Topology Diagram
-The following diagram represents the basic topology built by this code
+The following diagram represents the basic topology built by this code. The on-prem 'Home Lab Network' is shown for reference only. No on-prem resources are created by this code.
 
-<img width="888" alt="aws iselab with vpn" src="https://user-images.githubusercontent.com/103554967/204706936-718a1afa-16b1-48ca-bc94-fe59f87495ec.png">
-
+<img width="888" alt="aws iselab diagram" src="https://user-images.githubusercontent.com/103554967/204721904-557443dc-79df-4290-922f-5338cadfe6bd.png">
