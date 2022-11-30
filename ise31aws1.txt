@@ -1,0 +1,11 @@
+hostname=ise31aws1
+primarynameserver=<dns server>
+dnsdomain=<dns domain>
+ntpserver=<ntpserver>
+timezone=<timezone>
+username=admin
+password=<password>
+ersapi=yes
+openapi=yes
+pxGrid=yes
+pxgrid_cloud=no
