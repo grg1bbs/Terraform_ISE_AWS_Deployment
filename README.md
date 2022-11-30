@@ -15,7 +15,7 @@ This code was validated using:
   - Basic Security Group for the ISE nodes
   - 2x ISE EC2 instances in the Private Subnets; one in each AZ
   
-  # Pre-requisites
+## Pre-requisites
    - Terraform application installed
    - Necessary AWS IAM credentials and roles
    - AWS key pair for SSH
@@ -28,4 +28,8 @@ This code was validated using:
    
    https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html
    
-   
+## Topology Diagram
+The following diagram represents the basic topology built by this code
+
+<img width="888" alt="aws iselab with vpn" src="https://user-images.githubusercontent.com/103554967/204706936-718a1afa-16b1-48ca-bc94-fe59f87495ec.png">
+
