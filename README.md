@@ -1,5 +1,7 @@
 # Terraform_ISE_AWS_Deployment
-Terraform code for creating a lab environment in AWS using Cisco ISE 3.1 and the necessary AWS environment constructs (VPC, Subnets, Security Group, NAT and Interet Gateways, Route Tables, etc)
+Terraform code for creating a lab environment in AWS using Cisco ISE 3.1 and the necessary AWS environment constructs (VPC, Subnets, Security Group, NAT and Interet Gateways, Route Tables, etc).
+I built this code so that I could quickly spin up ISE nodes in AWS (they still take ~30min to complete building), test what I need, and tear the lab environment down when I am finished.
+The code for the ISE resources can be scaled up/down as needed and used for either non-production or production environments.
 
 This code was validated using:
  - ISE 3.1 AMI (ap-southeast-2 region) from the AWS Marketplace
