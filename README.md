@@ -10,7 +10,7 @@ This code was validated using:
  - Terraform AWS provider version 4.43.0
  - (Site-to-Site VPN) Cisco ASA 5506-X (Security Plus license) running software version 9.16(3)23
  
- The following 21 resources are created by this Terraform code:
+ The following resources are created by this Terraform code:
   - VPC (In the ap-southeast-2 region; Availibility zones 2a & 2b)
   - 2x Public Subnets & 2x Private Subnets; one in each AZ
   - A public Internet Gateway
@@ -18,6 +18,7 @@ This code was validated using:
   - Route Tables and the necessary associations for the Public and Private Subnets
   - Basic Security Group for the ISE nodes
   - 2x ISE EC2 instances in the Private Subnets; one in each AZ
+  - (Optional) Site-to-Site VPN gateway, customer gateway, and related static routes and attachments
   
 ## Pre-requisites
    - Terraform application installed
