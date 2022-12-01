@@ -67,3 +67,43 @@ Unless any errors are found, after the resource build is complete, the resulting
 ```diff
 + Apply complete! Resources: 21 added, 0 changed, 0 destroyed.
 ```
+
+If you check the terraform state, you should see the following resources:
+ 
+```bash
+> terraform state list
+aws_eip.nat_eip
+aws_instance.ise31aws1
+aws_instance.ise31aws2
+aws_internet_gateway.igw
+aws_nat_gateway.natgw
+aws_network_interface.ise31aws1_gig0
+aws_network_interface.ise31aws2_gig0
+aws_route.private_nat_gateway
+aws_route.public_internet_gateway
+aws_route_table.private_route
+aws_route_table.public_route
+aws_route_table_association.private[0]
+aws_route_table_association.private[1]
+aws_route_table_association.public[0]
+aws_route_table_association.public[1]
+aws_security_group.ise_network_access
+aws_subnet.private_subnet[0]
+aws_subnet.private_subnet[1]
+aws_subnet.public_subnet[0]
+aws_subnet.public_subnet[1]
+aws_vpc.vpc
+```
+ 
+### Teardown
+To tear down the entire environment, use 'terraform destroy' and the dependency mappings will ensure everything is destroyed in the correct order.
+
+```bash
+> terraform destroy
+```
+
+Unless any errors are found, after the resource destroy process is complete, the resulting status should be:
+
+```diff
++ Destroy complete! Resources: 21 destroyed.
+```
