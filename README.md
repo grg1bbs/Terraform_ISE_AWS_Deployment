@@ -49,7 +49,7 @@ The following diagram represents the basic topology built by this code. The on-p
  
 2. Edit the 'variables.tf' file to suit your environment (Subnets, Availability Zones, ISE AMI for your region, ISE EC2 instance size, ISE node IP addresses, etc.)
 
-3. Update the user data text files (ise31aws1.txt, ise31aws2.txt) to replace the <variables> to suit your environment. If preferred, change the hostname to suit your naming convention.
+3. Update the user data text files (ise31aws1.txt, ise31aws2.txt) to replace the \<variables\> to suit your environment. If preferred, change the hostname to suit your naming convention.
 
     See [Deploy Cisco Identity Services Engine Natively on Cloud Platforms](https://www.cisco.com/c/en/us/td/docs/security/ise/ISE_on_Cloud/b_ISEonCloud/m_ISEaaS.html) for guidance.
 
