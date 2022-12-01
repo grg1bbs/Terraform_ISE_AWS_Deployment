@@ -19,6 +19,8 @@ This code was validated using:
   - Basic Security Group for the ISE nodes
   - 2x ISE EC2 instances in the Private Subnets; one in each AZ
   - (Optional) Site-to-Site VPN gateway, customer gateway, and related static routes and attachments
+
+#### Note: This code only deploys the individual standalone ISE nodes. It does not perform any operations to build the ISE cluster.
   
 ## Pre-requisites
    - Terraform application installed
