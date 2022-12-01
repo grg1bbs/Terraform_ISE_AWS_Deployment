@@ -1,0 +1,44 @@
+object network obj-SrcNet
+ subnet 192.168.0.0 255.255.0.0
+object network obj-amzn
+ subnet 172.32.32.0 255.255.255.0
+!
+access-list acl-amzn extended permit ip any4 172.32.32.0 255.255.255.0
+access-list amzn-filter extended permit ip 172.32.32.0 255.255.255.0 192.168.0.0 255.255.0.0 
+access-list amzn-filter extended deny ip any any 
+!
+nat (inside,outside) source static obj-SrcNet obj-SrcNet destination static obj-amzn obj-amzn
+!
+sysopt connection tcpmss 1379
+!
+crypto isakmp identity address 
+crypto ikev1 enable outside
+crypto ikev1 policy 201
+ authentication pre-share
+ encryption aes
+ hash sha
+ group 14
+ lifetime 28800
+!
+crypto ipsec ikev1 transform-set transform-amzn esp-aes esp-sha-hmac 
+!
+group-policy filter internal
+group-policy filter attributes
+ vpn-filter value amzn-filter
+!
+tunnel-group <amzn-vgw-ip1> type ipsec-l2l
+tunnel-group <amzn-vgw-ip1> ipsec-attributes
+ ikev1 pre-shared-key *****
+ isakmp keepalive threshold 10 retry 10
+tunnel-group <amzn-vgw-ip2> type ipsec-l2l
+tunnel-group <amzn-vgw-ip2> ipsec-attributes
+ ikev1 pre-shared-key *****
+ isakmp keepalive threshold 10 retry 10
+!
+crypto map amzn_vpn_map 1 match address acl-amzn
+crypto map amzn_vpn_map 1 set pfs 
+crypto map amzn_vpn_map 1 set peer <amzn-vgw-ip1> <amzn_vgw-ip2> 
+crypto map amzn_vpn_map 1 set ikev1 transform-set transform-amzn
+crypto map amzn_vpn_map 1 set security-association lifetime seconds 3600
+crypto map amzn_vpn_map interface outside
+
