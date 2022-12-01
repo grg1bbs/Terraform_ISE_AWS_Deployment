@@ -42,13 +42,14 @@ variable "ise31_aws2_gig0_ip" {
   default = "172.32.32.132"
 }
 /*
+# IKEv1 pre-shared keys for VPN tunnels - REPLACE WITH YOUR PSKs and VPN headend IP
 variable "tunnel1_psk" {
-  default = "hAxVnrCPwsVC_4_yFqyaj8pM9m_2hGJA"
+  default = "this_is_tunnel1_psk"
 }
 variable "tunnel2_psk" {
-  default = "BOsGV4ZKY6DvRjroQ1x.3k8ORAtFmXA1"
+  default = "this_is_tunnel2_psk"
 }
 variable "on_prem_gw_ip" {
-  default = "159.196.180.166"
+  default = "<on_prem_vpn_headend_ip>"
 }
 */
