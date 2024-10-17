@@ -176,3 +176,13 @@ The aws_instance resources in the 'ise.tf' file that are used to create the ISE 
 This was included due to a customer concern of having the cleartext password stored in the 'ise31aws1.txt' and 'ise31aws2.txt' files used for the user_data. This allows the passwords to be changed in these files after the initial deployment without causing a change/rebuild of those resources by terraform.
 
 This block can be removed from those resource blocks if preferred.
+
+### User_data requirements
+The content in the user_data must meet the same requirements as documented for the setup program in the [Cisco ISE Install Guide](https://www.cisco.com/c/en/us/td/docs/security/ise/3-3/install_guide/b_ise_installationGuide33/b_ise_InstallationGuide33_chapter_3.html#run-setup-program-cisco-ise-server).
+If these requirements are not met, it can result in issues with the application server build.
+
+To clarify here, those requirements are:
+
+ - **hostname** - Must not exceed 19 characters. Valid characters include alphanumerical (A–Z, a–z, 0–9), and the hyphen (-). The first character must be a letter.
+ - **username** - If you choose not to use the default (admin), you must create a new username. The username must be three to eight characters in length and comprise of valid alphanumeric characters (A–Z, a–z, or 0–9)
+ - **password** - The password must be a minimum of six characters in length and include at least one lowercase letter (a–z), one uppercase letter (A–Z), and one numeral (0–9). Do not use the $ character in your password, unless it is the last character of the password.
