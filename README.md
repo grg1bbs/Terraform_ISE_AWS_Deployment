@@ -5,9 +5,9 @@ I built this code so that I could quickly spin up ISE nodes in AWS (they still t
 The code for the ISE resources can be scaled up/down as needed and used for either non-production or production environments.
 
 This code was validated using:
- - ISE 3.1 AMI (ap-southeast-2 region) from the AWS Marketplace
- - Terraform version 1.3.5
- - Terraform AWS provider version 4.43.0
+ - ISE 3.4 AMI (ap-southeast-2 region) from the AWS Marketplace
+ - Terraform version 1.10.5
+ - Terraform AWS provider version 5.88.0
  - (Site-to-Site VPN) Cisco ASA 5506-X (Security Plus license) running software version 9.16(3)23
  
  The following resources are created by this Terraform code:
@@ -47,9 +47,9 @@ The following diagram represents the basic topology built by this code. The on-p
     git clone https://github.com/grg1bbs/Terraform_ISE_AWS_Deployment
     ```
  
-2. Edit the 'variables.tf' file to suit your environment (Subnets, Availability Zones, ISE AMI for your region, ISE EC2 instance size, ISE node IP addresses, etc.)
+2. Edit the 'variables.tf' file in the root module to suit your environment (Subnets, Availability Zones, ISE AMI for your region, ISE EC2 instance size, ISE node IP addresses, etc.)
 
-3. Update the user data text files (ise31aws1.txt, ise31aws2.txt) to replace the \<variables\> to suit your environment. If preferred, change the hostname to suit your naming convention.
+3. Update the user data text files (ise34aws1.txt, ise34aws2.txt) to replace the \<variables\> to suit your environment. If preferred, change the hostname to suit your naming convention.
 
     See [Deploy Cisco Identity Services Engine Natively on Cloud Platforms](https://www.cisco.com/c/en/us/td/docs/security/ise/ISE_on_Cloud/b_ISEonCloud/m_ISEaaS.html) for guidance.
 
@@ -86,12 +86,8 @@ If you check the terraform state, you should see the following resources:
 ```bash
 > terraform state list
 aws_eip.nat_eip
-aws_instance.ise31aws1
-aws_instance.ise31aws2
 aws_internet_gateway.igw
 aws_nat_gateway.natgw
-aws_network_interface.ise31aws1_gig0
-aws_network_interface.ise31aws2_gig0
 aws_route.private_nat_gateway
 aws_route.public_internet_gateway
 aws_route_table.private_route
@@ -106,6 +102,10 @@ aws_subnet.private_subnet[1]
 aws_subnet.public_subnet[0]
 aws_subnet.public_subnet[1]
 aws_vpc.vpc
+module.ise34aws1.aws_instance.ise
+module.ise34aws1_gig0.aws_network_interface.ise_gig0
+module.ise34aws2.aws_instance.ise
+module.ise34aws2_gig0.aws_network_interface.ise_gig0
 ```
 
 ### Results *with* the optional site-to-site VPN resources
@@ -125,12 +125,8 @@ If you check the terraform state, you should see the following resources:
 > terraform state list
 aws_customer_gateway.cgw
 aws_eip.nat_eip
-aws_instance.ise31aws1
-aws_instance.ise31aws2
 aws_internet_gateway.igw
 aws_nat_gateway.natgw
-aws_network_interface.ise31aws1_gig0
-aws_network_interface.ise31aws2_gig0
 aws_route.private_nat_gateway
 aws_route.public_internet_gateway
 aws_route.r
@@ -150,6 +146,10 @@ aws_vpn_connection.s2s_vpn
 aws_vpn_connection_route.on_prem
 aws_vpn_gateway.vgw
 aws_vpn_gateway_attachment.vpn_attachment
+module.ise34aws1.aws_instance.ise
+module.ise34aws1_gig0.aws_network_interface.ise_gig0
+module.ise34aws2.aws_instance.ise
+module.ise34aws2_gig0.aws_network_interface.ise_gig0
 ```
 
 ### Teardown
@@ -166,14 +166,14 @@ Unless any errors are found, after the resource destroy process is complete, the
 ```
 
 #### Additional Note
-The aws_instance resources in the 'ise.tf' file that are used to create the ISE EC2 instances include an optional block for:
+The aws_instance child module resource in the './modules/ise/ise.tf' file that is used to create the ISE EC2 instances includes an optional block for:
 ```bash
   lifecycle {
     ignore_changes = [user_data]
   }
 ```
 
-This was included due to a customer concern of having the cleartext password stored in the 'ise31aws1.txt' and 'ise31aws2.txt' files used for the user_data. This allows the passwords to be changed in these files after the initial deployment without causing a change/rebuild of those resources by terraform.
+This was included due to a customer concern of having the cleartext password stored in the 'ise34aws1.txt' and 'ise34aws2.txt' files used for the user_data. This allows the passwords to be changed in these files after the initial deployment without causing a change/rebuild of those resources by terraform.
 
 This block can be removed from those resource blocks if preferred.
 
