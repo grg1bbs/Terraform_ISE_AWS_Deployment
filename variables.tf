@@ -29,17 +29,20 @@ variable "key_name" {
   default = "cisco-ise-lab"
   description = "Name of the key pair created in AWS; used to SSH into the ISE nodes"
 }
-variable "ise_ami_apse2" {
-  default = "ami-0f1846c9d911d1727"
+variable "ise34_ami_apse2" {
+  default = "ami-02cf2eba3e7ef8f6f"
 }
 variable "ise_instance_type_small" {
   default = "t3.xlarge"
 }
-variable "ise31_aws1_gig0_ip" {
+variable "ise_aws1_gig0_ip" {
   default = "172.32.32.24"
 }
-variable "ise31_aws2_gig0_ip" {
+variable "ise_aws2_gig0_ip" {
   default = "172.32.32.132"
+}
+variable "volume_size" {
+  default = 300
 }
 /*
 # IKEv1 pre-shared keys for VPN tunnels - REPLACE WITH YOUR PSKs AND VPN HEADEND IP
