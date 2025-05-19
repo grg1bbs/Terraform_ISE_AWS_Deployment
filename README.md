@@ -177,6 +177,9 @@ This was included due to a customer concern of having the cleartext password sto
 
 This block can be removed from those resource blocks if preferred.
 
+It should be noted, however, that ISE will force a password change for the 'iseadmin' account upon first login to the Web UI. Therefore, the password defined in the user_data files is on a temporary one used during the build.
+The same password is used for the 'iseadmin' account initially created for the CLI (separate from the Web UI account). This password should be changed from the SSH (or serial) console immediately after the build.
+
 ### User_data requirements
 The content in the user_data must meet the same requirements as documented for the setup program in the [Cisco ISE Install Guide](https://www.cisco.com/c/en/us/td/docs/security/ise/3-3/install_guide/b_ise_installationGuide33/b_ise_InstallationGuide33_chapter_3.html#run-setup-program-cisco-ise-server).
 If these requirements are not met, it can result in issues with the application server build.
